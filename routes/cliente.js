@@ -15,18 +15,19 @@ router.get('/', async (req, res) => {
 
 // Insertar un nuevo cliente
 router.post('/', async (req, res) => {
-  try {
-    const { telefono, email, nombre } = req.body;
-    const result = await client.query(
-      'INSERT INTO cliente (telefono, email, nombre) VALUES ($1, $2, $3) RETURNING *',
-      [telefono, email, nombre]
-    );
-    res.status(200).json(result.rows[0]);
-  } catch (error) {
-    console.error('Error al insertar datos:', error);
-    res.status(500).json({ message: 'Error al insertar datos' });
-  }
+ try {
+   const { telefono, email, nombre } = req.body;
+   const result = await client.query(
+     'INSERT INTO cliente (telefono, email, nombre) VALUES ($1, $2, $3) RETURNING id_cliente, telefono, email, nombre',
+     [telefono, email, nombre]
+   );
+   res.status(200).json(result.rows[0]);
+ } catch (error) {
+   console.error('Error al insertar datos:', error);
+   res.status(500).json({ message: 'Error al insertar datos' });
+ }
 });
+
 
 // Actualizar un cliente
 router.put('/:id_cliente', async (req, res) => {
