@@ -1,0 +1,17 @@
+{
+ "name": "mi-app-node",
+ "version": "1.0.0",
+ "description": "Una simple aplicación de Node.js con Express",
+ "main": "index.js",
+ "scripts": {
+   "start": "node index.js",
+   "test": "echo \"Error: no test specified\" && exit 1"
+ },
+ "keywords": [],
+ "author": "",
+ "license": "ISC",
+ "dependencies": {
+   "express": "^4.17.1",
+   "pg": "^8.6.0"
+ }
+}
