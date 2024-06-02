@@ -3,7 +3,7 @@ version: '3'
 services:
   app:
     build: .
-    command: ["./wait-for-db.sh", "db", "5432", "npm", "start"]
+    command: ["/bin/bash", "-c", "./wait-for-db.sh db 5432 && ./init-db.sh && npm start"]
     ports:
       - "3000:3000"
     depends_on:
