@@ -1,9 +1,9 @@
-version: '3'
+version: '3.8'
 
 services:
   app:
     build: .
-    command: ["/bin/bash", "-c", "./wait-for-db.sh db 5432 && ./init-db.sh && npm start"]
+    command: ["/bin/bash", "-c", "./wait-for-db.sh db 5432 && npm start"]
     ports:
       - "3000:3000"
     depends_on:
@@ -25,8 +25,13 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
     networks:
       - mynetwork
+
+volumes:
+  postgres-data:
 
 networks:
   mynetwork:

@@ -13,10 +13,9 @@ COPY . .
 
 # Agrega los scripts de inicio y establece los permisos de ejecución
 COPY wait-for-db.sh ./
-COPY init-db.sh ./
-RUN chmod +x wait-for-db.sh init-db.sh
+RUN chmod +x wait-for-db.sh
 
 EXPOSE 3000
 
 # Modifica el CMD para ejecutar el script de inicio
-CMD ["./wait-for-db.sh", "db", "5432", "./init-db.sh", "npm", "start"]
+CMD ["./wait-for-db.sh", "db", "5432", "npm", "start"]
